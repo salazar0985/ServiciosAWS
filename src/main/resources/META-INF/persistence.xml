@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.springaws.servicios.serviciosartifact_servicios-artifact_war_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.example.demo.da.DatosBanc</class>
+    <class>com.example.demo.da.Usuario</class>
+    <class>com.example.demo.da.Domicilio</class>
+    <class>com.example.demo.da.Demo</class>
+    <class>com.example.demo.da.Test</class>
+    <class>com.example.demo.da.Tarjeta</class>
+    <class>com.example.demo.da.Rol</class>
+    <class>com.example.demo.da.CatTipoTarjeta</class>
+    <class>com.example.demo.da.DatosUsuario</class>
+    <class>com.example.demo.da.Componente</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Componente</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.DatosUsuario</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Usuario</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.DatosBanc</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.CatTipoTarjeta</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Demo</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Tarjeta</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Test</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Domicilio</class>
+    <class>com.springaws.servicios.serviciosartifact.entity.Rol</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://aa1hgvyt6ctbkp8.cu7jwhjnn29x.us-east-2.rds.amazonaws.com:3306/Servicios?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="serviciosadmin"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="c1XQpBD61WEUZox"/>
+    </properties>
+  </persistence-unit>
+</persistence>

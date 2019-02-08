@@ -1,4 +1,4 @@
-package com.springaws.servicios.serviciosartifact.config;
+package com.springaws.servicios.serviciosartifact;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

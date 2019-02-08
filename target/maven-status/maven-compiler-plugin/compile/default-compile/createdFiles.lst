@@ -1,9 +1,6 @@
-com\springaws\servicios\serviciosartifact\config\CustomAuthenticationProvider.class
-com\springaws\servicios\serviciosartifact\config\ServiciosApplication.class
-com\springaws\servicios\serviciosartifact\config\MvcConfig.class
-com\springaws\servicios\serviciosartifact\mvc\model\dao\impl\PersistenceExampleDaoImpl.class
 com\springaws\servicios\serviciosartifact\config\WebSecurityConfig.class
-com\springaws\servicios\serviciosartifact\mvc\model\persistence\PersistenceExample.class
-com\springaws\servicios\serviciosartifact\config\ServletInitializer.class
+com\springaws\servicios\serviciosartifact\config\CustomAuthenticationProvider.class
+com\springaws\servicios\serviciosartifact\ServiciosApplication.class
 com\springaws\servicios\serviciosartifact\mvc\view\HomeController.class
-com\springaws\servicios\serviciosartifact\mvc\model\dao\PersistenceExampleDao.class
+com\springaws\servicios\serviciosartifact\ServletInitializer.class
+com\springaws\servicios\serviciosartifact\config\MvcConfig.class

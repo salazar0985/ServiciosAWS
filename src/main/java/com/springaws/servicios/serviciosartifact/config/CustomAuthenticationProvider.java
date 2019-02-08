@@ -6,7 +6,6 @@
 package com.springaws.servicios.serviciosartifact.config;
 
 import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     
+//    @Autowired
+//    private UsuarioDao usuarioDao;
  
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -27,6 +28,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName().trim();
         String password = authentication.getCredentials().toString().trim();
         
+//        Usuario usuario = usuarioDao.findOneByUsuarioAndContrasenia(name, password);
         
         if (true) {
   
