@@ -30,18 +30,19 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")})
 public class Rol implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IdRol")
-    private Integer idRol;
     @Size(max = 50)
     @Column(name = "Clave")
     private String clave;
     @Size(max = 100)
     @Column(name = "Descripcion")
     private String descripcion;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdRol")
+    private Integer idRol;
     @Column(name = "Activo")
     private Boolean activo;
     @OneToMany(mappedBy = "idRol", fetch = FetchType.LAZY)
@@ -62,21 +63,6 @@ public class Rol implements Serializable {
         this.idRol = idRol;
     }
 
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public Boolean getActivo() {
         return activo;
@@ -117,6 +103,22 @@ public class Rol implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Rol[ idRol=" + idRol + " ]";
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
 }

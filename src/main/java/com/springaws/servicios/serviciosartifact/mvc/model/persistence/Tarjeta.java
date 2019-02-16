@@ -33,15 +33,16 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Tarjeta.findAll", query = "SELECT t FROM Tarjeta t")})
 public class Tarjeta implements Serializable {
 
+    @Size(max = 25)
+    @Column(name = "NumeroTarjeta")
+    private String numeroTarjeta;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdTarjeta")
     private Integer idTarjeta;
-    @Size(max = 25)
-    @Column(name = "NumeroTarjeta")
-    private String numeroTarjeta;
     @Column(name = "FechaExpiracion")
     @Temporal(TemporalType.DATE)
     private Date fechaExpiracion;
@@ -69,13 +70,6 @@ public class Tarjeta implements Serializable {
         this.idTarjeta = idTarjeta;
     }
 
-    public String getNumeroTarjeta() {
-        return numeroTarjeta;
-    }
-
-    public void setNumeroTarjeta(String numeroTarjeta) {
-        this.numeroTarjeta = numeroTarjeta;
-    }
 
     public Date getFechaExpiracion() {
         return fechaExpiracion;
@@ -132,6 +126,14 @@ public class Tarjeta implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Tarjeta[ idTarjeta=" + idTarjeta + " ]";
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
     }
     
 }

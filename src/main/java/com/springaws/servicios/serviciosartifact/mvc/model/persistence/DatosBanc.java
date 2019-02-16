@@ -35,12 +35,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "DatosBanc.findAll", query = "SELECT d FROM DatosBanc d")})
 public class DatosBanc implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IdDatosBanc")
-    private Integer idDatosBanc;
     @Size(max = 200)
     @Column(name = "Titular")
     private String titular;
@@ -56,6 +50,13 @@ public class DatosBanc implements Serializable {
     @Size(max = 200)
     @Column(name = "DireccionDom")
     private String direccionDom;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdDatosBanc")
+    private Integer idDatosBanc;
     @Column(name = "FechaCreacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
@@ -85,45 +86,6 @@ public class DatosBanc implements Serializable {
         this.idDatosBanc = idDatosBanc;
     }
 
-    public String getTitular() {
-        return titular;
-    }
-
-    public void setTitular(String titular) {
-        this.titular = titular;
-    }
-
-    public String getBanco() {
-        return banco;
-    }
-
-    public void setBanco(String banco) {
-        this.banco = banco;
-    }
-
-    public String getClabe() {
-        return clabe;
-    }
-
-    public void setClabe(String clabe) {
-        this.clabe = clabe;
-    }
-
-    public String getNumCta() {
-        return numCta;
-    }
-
-    public void setNumCta(String numCta) {
-        this.numCta = numCta;
-    }
-
-    public String getDireccionDom() {
-        return direccionDom;
-    }
-
-    public void setDireccionDom(String direccionDom) {
-        this.direccionDom = direccionDom;
-    }
 
     public Date getFechaCreacion() {
         return fechaCreacion;
@@ -188,6 +150,46 @@ public class DatosBanc implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosBanc[ idDatosBanc=" + idDatosBanc + " ]";
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public String getBanco() {
+        return banco;
+    }
+
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
+    public String getClabe() {
+        return clabe;
+    }
+
+    public void setClabe(String clabe) {
+        this.clabe = clabe;
+    }
+
+    public String getNumCta() {
+        return numCta;
+    }
+
+    public void setNumCta(String numCta) {
+        this.numCta = numCta;
+    }
+
+    public String getDireccionDom() {
+        return direccionDom;
+    }
+
+    public void setDireccionDom(String direccionDom) {
+        this.direccionDom = direccionDom;
     }
     
 }

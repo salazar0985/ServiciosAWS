@@ -32,12 +32,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "DatosUsuario.findAll", query = "SELECT d FROM DatosUsuario d")})
 public class DatosUsuario implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IdDatosUsr")
-    private Integer idDatosUsr;
     @Size(max = 150)
     @Column(name = "Nombre")
     private String nombre;
@@ -63,6 +57,12 @@ public class DatosUsuario implements Serializable {
     @Size(max = 100)
     @Column(name = "Email")
     private String email;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdDatosUsr")
+    private Integer idDatosUsr;
     @Column(name = "Activo")
     private Boolean activo;
     @OneToMany(mappedBy = "idDatosUsr", fetch = FetchType.LAZY)
@@ -84,6 +84,56 @@ public class DatosUsuario implements Serializable {
 
     public void setIdDatosUsr(Integer idDatosUsr) {
         this.idDatosUsr = idDatosUsr;
+    }
+
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
+
+    public Domicilio getIdDomicilio() {
+        return idDomicilio;
+    }
+
+    public void setIdDomicilio(Domicilio idDomicilio) {
+        this.idDomicilio = idDomicilio;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idDatosUsr != null ? idDatosUsr.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof DatosUsuario)) {
+            return false;
+        }
+        DatosUsuario other = (DatosUsuario) object;
+        if ((this.idDatosUsr == null && other.idDatosUsr != null) || (this.idDatosUsr != null && !this.idDatosUsr.equals(other.idDatosUsr))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosUsuario[ idDatosUsr=" + idDatosUsr + " ]";
     }
 
     public String getNombre() {
@@ -148,55 +198,6 @@ public class DatosUsuario implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Boolean getActivo() {
-        return activo;
-    }
-
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
-
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    public Domicilio getIdDomicilio() {
-        return idDomicilio;
-    }
-
-    public void setIdDomicilio(Domicilio idDomicilio) {
-        this.idDomicilio = idDomicilio;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idDatosUsr != null ? idDatosUsr.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DatosUsuario)) {
-            return false;
-        }
-        DatosUsuario other = (DatosUsuario) object;
-        if ((this.idDatosUsr == null && other.idDatosUsr != null) || (this.idDatosUsr != null && !this.idDatosUsr.equals(other.idDatosUsr))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosUsuario[ idDatosUsr=" + idDatosUsr + " ]";
     }
     
 }

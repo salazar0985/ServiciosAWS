@@ -35,18 +35,19 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IdUsuario")
-    private Integer idUsuario;
     @Size(max = 50)
     @Column(name = "Usuario")
     private String usuario;
     @Size(max = 50)
     @Column(name = "Contrasenia")
     private String contrasenia;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdUsuario")
+    private Integer idUsuario;
     @Column(name = "FechaCreacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
@@ -79,21 +80,6 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
 
     public Date getFechaCreacion() {
         return fechaCreacion;
@@ -166,6 +152,22 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
     
 }

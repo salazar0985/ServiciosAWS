@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<f:view contentType="text/html"
+        xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:ui="http://java.sun.com/jsf/facelets" 
+        xmlns:h="http://java.sun.com/jsf/html" 
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template/template.xhtml">
+
+        <ui:define name="title">Login</ui:define>
+
+        <ui:define name="header">Login</ui:define>
+
+        <ui:define name="content">
+            <div class="row">
+                <h:form prependId="false" styleClass="col s4 card">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <h:outputLabel value="Login failed!" styleClass="red-text" rendered="${!empty param['error']}" />
+                        </div>
+                    </div>                   
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <h:inputText id="username" required="true" />
+                            <h:outputLabel value="Usuario" for="username" />
+                            <h:message for="username" />
+                        </div>
+                        <div class="input-field col s12">
+                            <h:inputSecret id="password" required="true" />
+                            <h:outputLabel value="Password" for="password" />
+                            <h:message for="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 right-align">
+                            <p:commandButton value="Login" styleClass="waves-effect waves-light btn" ajax="false" />
+                        </div>
+                    </div>
+                 </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</f:view>

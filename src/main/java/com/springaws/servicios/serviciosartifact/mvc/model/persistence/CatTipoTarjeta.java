@@ -30,18 +30,19 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "CatTipoTarjeta.findAll", query = "SELECT c FROM CatTipoTarjeta c")})
 public class CatTipoTarjeta implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IdTipoTarjeta")
-    private Integer idTipoTarjeta;
     @Size(max = 50)
     @Column(name = "Clave")
     private String clave;
     @Size(max = 100)
     @Column(name = "Descripcion")
     private String descripcion;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdTipoTarjeta")
+    private Integer idTipoTarjeta;
     @OneToMany(mappedBy = "idTipoTarjeta", fetch = FetchType.LAZY)
     private List<Tarjeta> tarjetaList;
 
@@ -60,21 +61,6 @@ public class CatTipoTarjeta implements Serializable {
         this.idTipoTarjeta = idTipoTarjeta;
     }
 
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public List<Tarjeta> getTarjetaList() {
         return tarjetaList;
@@ -107,6 +93,22 @@ public class CatTipoTarjeta implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatTipoTarjeta[ idTipoTarjeta=" + idTipoTarjeta + " ]";
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
 }

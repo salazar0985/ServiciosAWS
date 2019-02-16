@@ -20,29 +20,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-  
         auth.authenticationProvider(authProvider);
     }
  
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http
-          .csrf().disable()
-          .authorizeRequests()
-          .antMatchers("/login","/servicios").permitAll()
-          .anyRequest().authenticated()
-          .and()
-          .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
-          .loginProcessingUrl("/login")
-//          .successForwardUrl("/home")
-          .defaultSuccessUrl("/home")
-          .failureUrl("/login?error=true")
-//          .failureHandler(authenticationFailureHandler())
-          .and()
-          .logout()
-          .logoutUrl("/perform_logout");
-//          .deleteCookies("JSESSIONID")
-//          .logoutSuccessHandler(logoutSuccessHandler());
+    protected void configure(final HttpSecurity httpSecurity) throws Exception {
+
+        httpSecurity.authorizeRequests().antMatchers("/javax.faces.resource/**").permitAll().anyRequest().authenticated();
+        httpSecurity.formLogin().loginPage("/login.xhtml").permitAll().failureUrl("/login.xhtml?error=true");
+        httpSecurity.logout().logoutSuccessUrl("/login.xhtml");
+        httpSecurity.csrf().disable();
     }
      
     @Bean

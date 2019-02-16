@@ -1,7 +1,6 @@
 package com.springaws.servicios.serviciosartifact.config;
 
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Usuario;
-import com.springaws.servicios.serviciosartifact.mvc.model.repository.UsuarioDao;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -9,16 +8,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.UsuarioRepository;
 
-/**
- *
- * @author pimen
- */
+
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     
     @Autowired
-    private UsuarioDao usuarioDao;
+    private UsuarioRepository usuarioDao;
  
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

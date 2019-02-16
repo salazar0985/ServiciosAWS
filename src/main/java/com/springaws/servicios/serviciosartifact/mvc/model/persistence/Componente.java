@@ -27,6 +27,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Componente.findAll", query = "SELECT c FROM Componente c")})
 public class Componente implements Serializable {
 
+    @Size(max = 50)
+    @Column(name = "Clave")
+    private String clave;
+    @Size(max = 100)
+    @Column(name = "Descripcion")
+    private String descripcion;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,12 +42,6 @@ public class Componente implements Serializable {
     private Integer idComponente;
     @Column(name = "IdRol")
     private Integer idRol;
-    @Size(max = 50)
-    @Column(name = "Clave")
-    private String clave;
-    @Size(max = 100)
-    @Column(name = "Descripcion")
-    private String descripcion;
     @Column(name = "Activo")
     private Boolean activo;
 
@@ -67,21 +68,6 @@ public class Componente implements Serializable {
         this.idRol = idRol;
     }
 
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public Boolean getActivo() {
         return activo;
@@ -114,6 +100,22 @@ public class Componente implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Componente[ idComponente=" + idComponente + " ]";
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
 }

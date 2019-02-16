@@ -26,15 +26,16 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Test_1.findAll", query = "SELECT t FROM Test_1 t")})
 public class Test_1 implements Serializable {
 
+    @Size(max = 45)
+    @Column(name = "Nombre")
+    private String nombre;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "idTest")
     private Integer idTest;
-    @Size(max = 45)
-    @Column(name = "Nombre")
-    private String nombre;
 
     public Test_1() {
     }
@@ -51,13 +52,6 @@ public class Test_1 implements Serializable {
         this.idTest = idTest;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     @Override
     public int hashCode() {
@@ -82,6 +76,14 @@ public class Test_1 implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Test_1[ idTest=" + idTest + " ]";
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }

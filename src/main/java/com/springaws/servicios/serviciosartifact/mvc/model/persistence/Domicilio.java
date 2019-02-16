@@ -30,12 +30,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Domicilio.findAll", query = "SELECT d FROM Domicilio d")})
 public class Domicilio implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "IdDomicilio")
-    private Integer idDomicilio;
     @Size(max = 150)
     @Column(name = "Pais")
     private String pais;
@@ -45,8 +39,6 @@ public class Domicilio implements Serializable {
     @Size(max = 150)
     @Column(name = "Municipio")
     private String municipio;
-    @Column(name = "CodigoPostal")
-    private Integer codigoPostal;
     @Size(max = 13)
     @Column(name = "Colonia")
     private String colonia;
@@ -62,6 +54,15 @@ public class Domicilio implements Serializable {
     @Size(max = 300)
     @Column(name = "DatosAdicionales")
     private String datosAdicionales;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdDomicilio")
+    private Integer idDomicilio;
+    @Column(name = "CodigoPostal")
+    private Integer codigoPostal;
     @Column(name = "Activo")
     private Boolean activo;
     @OneToMany(mappedBy = "idDomicilio", fetch = FetchType.LAZY)
@@ -82,29 +83,6 @@ public class Domicilio implements Serializable {
         this.idDomicilio = idDomicilio;
     }
 
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
 
     public Integer getCodigoPostal() {
         return codigoPostal;
@@ -114,45 +92,6 @@ public class Domicilio implements Serializable {
         this.codigoPostal = codigoPostal;
     }
 
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getNumeroInt() {
-        return numeroInt;
-    }
-
-    public void setNumeroInt(String numeroInt) {
-        this.numeroInt = numeroInt;
-    }
-
-    public String getDatosAdicionales() {
-        return datosAdicionales;
-    }
-
-    public void setDatosAdicionales(String datosAdicionales) {
-        this.datosAdicionales = datosAdicionales;
-    }
 
     public Boolean getActivo() {
         return activo;
@@ -193,6 +132,70 @@ public class Domicilio implements Serializable {
     @Override
     public String toString() {
         return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Domicilio[ idDomicilio=" + idDomicilio + " ]";
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getNumeroInt() {
+        return numeroInt;
+    }
+
+    public void setNumeroInt(String numeroInt) {
+        this.numeroInt = numeroInt;
+    }
+
+    public String getDatosAdicionales() {
+        return datosAdicionales;
+    }
+
+    public void setDatosAdicionales(String datosAdicionales) {
+        this.datosAdicionales = datosAdicionales;
     }
     
 }
