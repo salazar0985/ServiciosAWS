@@ -7,7 +7,10 @@
 
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<resource-bundle>
+			<base-name>static.i18n.messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
 	</application>
-
 </faces-config>
 
