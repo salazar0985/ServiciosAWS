@@ -21,7 +21,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="com.springaws.servicios.serviciosartifact_servicios-artifact_war_0.0.1-SNAPSHOTPU" />
+          <factory-entry name="com.springaws.servicios.serviciosartifact_servicios-artifact_war_0.0.1-SNAPSHOTPU" value="b981aa6f-6c62-4015-9168-dcbd92cd6bed" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
