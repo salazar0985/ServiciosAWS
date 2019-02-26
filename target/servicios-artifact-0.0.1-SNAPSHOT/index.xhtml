@@ -56,43 +56,41 @@
                             <h:outputLabel value="País" for="pais" />
                             <h:message for="pais" />
                         </div>
-                        <div class="input-field col s4">
+                        <p:outputPanel class="input-field col s4">
                             <h:selectOneMenu value="#{usuarioController.domicilio.estado}" id="estado">
                                 <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
                                 <f:selectItems value="#{usuarioController.estadoList}" var="estado" itemLabel="#{estado}" itemValue="#{estado}" />
-                                <f:ajax event="change" execute="@this" listener="#{usuarioController.actualizarMunicipio()}" render="col-municipio" onevent="" />
+                                <f:ajax event="change" execute="@this" listener="#{usuarioController.actualizarMunicipio()}" render="col-municipio"  />
                             </h:selectOneMenu>
                             <h:outputLabel value="Estado" for="estado" />
                             <h:message for="estado" />
-                        </div>
+                        </p:outputPanel>
                         <p:outputPanel id="col-municipio" class="input-field col s4">
                             <h:selectOneMenu value="#{usuarioController.domicilio.municipio}" id="municipio">
                                 <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
                                 <f:selectItems value="#{usuarioController.municipioList}" var="municipio" itemLabel="#{municipio}" itemValue="#{municipio}" />
+                                <f:ajax event="change" execute="@this" listener="#{usuarioController.actulizarColonia()}" render="col-colonia" />
                             </h:selectOneMenu>
                             <h:outputLabel value="Municipio" for="municipio" />
                             <h:message for="municipio" />
                         </p:outputPanel>
-                        <div class="input-field col s4">
+                        <p:outputPanel id="col-colonia" class="input-field col s4">
                             <h:selectOneMenu value="#{usuarioController.domicilio.colonia}" id="colonia">
                                 <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
-                                <f:selectItem itemLabel="Opción 1" itemValue="1" />
-                                <f:selectItem itemLabel="Opción 2" itemValue="2" />
-                                <f:selectItem itemLabel="Opción 3" itemValue="3" />
+                                <f:selectItems value="#{usuarioController.coloniaList}" var="colonia" itemLabel="#{colonia}" itemValue="#{colonia}" />
+                                <f:ajax event="change" execute="@this" listener="#{usuarioController.actualizarCodigoPostal()}" render="col-codigo-postal" />
                             </h:selectOneMenu>
                             <h:outputLabel value="Colonia" for="colonia" />
                             <h:message for="colonia" />
-                        </div>
-                        <div class="input-field col s4">
+                        </p:outputPanel>
+                        <p:outputPanel id="col-codigo-postal" class="input-field col s4">
                             <h:selectOneMenu value="#{usuarioController.domicilio.codigoPostal}" id="codigo-postal">
                                 <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
-                                <f:selectItem itemLabel="Opción 1" itemValue="1" />
-                                <f:selectItem itemLabel="Opción 2" itemValue="2" />
-                                <f:selectItem itemLabel="Opción 3" itemValue="3" />
+                                <f:selectItems value="#{usuarioController.codigoPostalList}" var="codigoPostal" itemLabel="#{codigoPostal}" itemValue="#{codigoPostal}" />
                             </h:selectOneMenu>
                             <h:outputLabel value="Código postal" for="codigo-postal" />
                             <h:message for="codigo-postal" />
-                        </div>
+                        </p:outputPanel>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">

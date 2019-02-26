@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 
 
 @Controller
-@Scope("request")
+@Scope("session")
 public class UsuarioController {
     
     @Autowired
@@ -24,17 +24,27 @@ public class UsuarioController {
     
     private List<String> estadoList;
     private List<String> municipioList;
+    private List<String> coloniaList;
+    private List<String> codigoPostalList;
   
     @PostConstruct
     private void postCostruct(){
         usuario = new Usuario();
         datosUsuario = new DatosUsuario();
         domicilio = new Domicilio();
-        estadoList =  estadosRepository.findDistinctDcEstado();
+        estadoList =  estadosRepository.findDistinctEstado();
     }
     
     public void actualizarMunicipio(){
-        municipioList =  estadosRepository.findDistinctDcLocalidadINEGI(domicilio.getEstado());
+        municipioList =  estadosRepository.findDistinctMunicipio(domicilio.getEstado());
+    }
+    
+    public void actulizarColonia(){
+        coloniaList =  estadosRepository.findDistinctColonia(domicilio.getMunicipio());
+    }
+    
+    public void actualizarCodigoPostal(){
+        codigoPostalList = estadosRepository.findDistinctCodigoPostal(domicilio.getMunicipio(), domicilio.getColonia());
     }
     
     public void agregarusuario(){
@@ -80,6 +90,21 @@ public class UsuarioController {
     public void setMunicipioList(List<String> municipioList) {
         this.municipioList = municipioList;
     }
-    
+
+    public List<String> getColoniaList() {
+        return coloniaList;
+    }
+
+    public void setColoniaList(List<String> coloniaList) {
+        this.coloniaList = coloniaList;
+    }
+
+    public List<String> getCodigoPostalList() {
+        return codigoPostalList;
+    }
+
+    public void setCodigoPostalList(List<String> codigoPostalList) {
+        this.codigoPostalList = codigoPostalList;
+    }
     
 }

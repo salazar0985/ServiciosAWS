@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title><ui:insert name="title" /></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,7 +11,7 @@
         <main>           
             <div class="container"> 
                 <h3>
-                     <ui:insert name="header" />
+                    <ui:insert name="header" />
                 </h3>
                 <ui:insert name="content">
                     Contenido por defecto ...    
@@ -19,13 +19,42 @@
             </div>            
         </main>
         <ui:include src="common/footer.xhtml" />   
+
+        <div id="modal-preloader" class="modal">
+            <div class="modal-content">
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+        </div>
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
 
             $(document).ready(function () {
                 $('select').formSelect();
+                $('.modal').modal();
             });
+
+            function onStart() {
+                $('#modal-preloader').modal("open");
+            }
+
+            function onComplete() {
+                $('#modal-preloader').modal("close");
+                $('select').formSelect();
+            }
+
+            function onSuccess() {
+                $('#modal-preloader').modal("close");
+                $('select').formSelect();
+            }
+
+            function onError() {
+                $('#modal-preloader').modal("close");
+                $('select').formSelect();
+            }
 
         </script>
         <style>
@@ -39,5 +68,6 @@
                 flex: 1 0 auto;
             }
         </style>
+        <p:ajaxStatus onstart="onStart()" oncomplete="onComplete()" onsuccess="onSuccess()" onerror="onError()" />
     </h:body>
 </html>
