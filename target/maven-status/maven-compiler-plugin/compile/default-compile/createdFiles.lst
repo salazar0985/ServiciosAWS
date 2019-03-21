@@ -31,3 +31,4 @@ com\springaws\servicios\serviciosartifact\mvc\model\persistence\Componente.class
 com\springaws\servicios\serviciosartifact\mvc\model\persistence\Documento.class
 com\springaws\servicios\serviciosartifact\mvc\model\persistence\Servicio.class
 com\springaws\servicios\serviciosartifact\mvc\model\persistence\DatosBanc.class
+com\springaws\servicios\serviciosartifact\mvc\model\repository\DomicilioRepository.class

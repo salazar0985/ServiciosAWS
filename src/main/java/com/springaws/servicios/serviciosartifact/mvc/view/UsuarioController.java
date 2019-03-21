@@ -2,8 +2,10 @@ package com.springaws.servicios.serviciosartifact.mvc.view;
 
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosUsuario;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Domicilio;
+import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Estados;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Usuario;
 import com.springaws.servicios.serviciosartifact.mvc.model.repository.EstadosRepository;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +49,20 @@ public class UsuarioController {
         codigoPostalList = estadosRepository.findDistinctCodigoPostal(domicilio.getMunicipio(), domicilio.getColonia());
     }
     
+    public void establecerDireccionPorCodigoPostal(){
+        List<Estados> estadoList = estadosRepository.findEstadosByCp(domicilio.getCodigoPostal().toString());
+        domicilio.setEstado(estadoList.get(0).getDcEstado());
+        municipioList =  estadosRepository.findDistinctMunicipio(domicilio.getEstado());
+        domicilio.setMunicipio(estadoList.get(0).getDcLocalidadINEGI());
+        coloniaList = new ArrayList<>();
+        for(Estados estado : estadoList){
+            coloniaList.add(estado.getDcMunicipio());
+        }
+        domicilio.setColonia(estadoList.get(0).getDcMunicipio());
+    }
+    
     public void agregarusuario(){
-        
+//        this.datosUsuario
     }
 
     public Usuario getUsuario() {

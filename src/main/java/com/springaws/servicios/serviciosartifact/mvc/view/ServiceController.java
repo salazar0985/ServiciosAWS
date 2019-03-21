@@ -4,7 +4,6 @@ import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatFormaP
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatTipoDatoEntity;
 import com.springaws.servicios.serviciosartifact.mvc.model.repository.CampoServicioRepository;
 import com.springaws.servicios.serviciosartifact.mvc.model.repository.CatFormaPagoRepository;
-import com.springaws.servicios.serviciosartifact.mvc.model.repository.CatTipoDatoRepository;
 import com.springaws.servicios.serviciosartifact.mvc.model.repository.PagoServicioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.DomicilioRepository;
 
 /**
  * Created by IDEX1010 on 11/02/2019.
@@ -34,13 +34,13 @@ public class ServiceController {
     private CatTipoDatoEntity selectedTipoDato;
 
     private CatFormaPagoRepository formaPagoRepository;
-    private CatTipoDatoRepository tipoDatoRepository;
+    private DomicilioRepository tipoDatoRepository;
     private CampoServicioRepository campoServicioRepository;
     private PagoServicioRepository pagoServicioRepository;
 
 
     @Autowired
-    public ServiceController(CatFormaPagoRepository formaPagoRepository, CatTipoDatoRepository tipoDatoRepository,
+    public ServiceController(CatFormaPagoRepository formaPagoRepository, DomicilioRepository tipoDatoRepository,
                              CampoServicioRepository campoServicioRepository, PagoServicioRepository pagoServicioRepository) {
         this.formaPagoRepository = formaPagoRepository;
         this.tipoDatoRepository = tipoDatoRepository;
@@ -52,7 +52,7 @@ public class ServiceController {
     public void initBean(){
 
         formaPagoList = (List<CatFormaPagoEntity>) formaPagoRepository.findAll();
-        tipoDatoList = (List<CatTipoDatoEntity>) tipoDatoRepository.findAll();
+//        tipoDatoList = (List<CatTipoDatoEntity>) tipoDatoRepository.findAll();
     }
 
 //    @RequestMapping(value = "/add", method = RequestMethod.GET)

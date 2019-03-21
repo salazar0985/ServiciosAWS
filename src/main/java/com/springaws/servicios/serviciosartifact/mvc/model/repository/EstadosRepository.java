@@ -20,4 +20,6 @@ public interface EstadosRepository extends CrudRepository<Estados, Long>{
     @Query(value = "SELECT DISTINCT Cp FROM Estados WHERE DcLocalidad_INEGI = ?1 and DcMunicipio = ?2", nativeQuery = true)
     public List<String> findDistinctCodigoPostal(String municipio, String colonia);
     
+    public List<Estados> findEstadosByCp(String cp);
+    
 }
