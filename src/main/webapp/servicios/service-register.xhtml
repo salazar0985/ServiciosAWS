@@ -100,6 +100,12 @@
                             <h:selectOneMenu id="selectCurrency">
                                 <f:selectItem itemValue=""
                                               itemLabel="#{msg['service_reg_currency_choose']}"></f:selectItem>
+                                <f:selectItem itemValue=""
+                                              itemLabel="#{msg['service_reg_currency_choose']}"></f:selectItem>
+                                <f:selectItems value="#{serviceController.tipoDivisaList}" var="divisa"
+                                               itemLabel="#{divisa.descripcion}"
+                                               itemValue="#{divisa.clave}"
+                                ></f:selectItems>
                                 <!--<f:selectItem value="1"></f:selectItem>-->
                                 <!--<f:selectItem value="2"></f:selectItem>-->
                                 <!--<f:selectItem value="3"></f:selectItem>-->
