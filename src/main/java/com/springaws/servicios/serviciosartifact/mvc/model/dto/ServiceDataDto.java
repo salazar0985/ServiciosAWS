@@ -14,7 +14,7 @@ public class ServiceDataDto {
     private Date updateDate;
     private Boolean active;
 
-    private List<ServiceFieldDto> fieldList;
+    private List<ServiceFieldDto> fieldList; // Un servicio puede tener diversos campos y formas de pago
     private List<ServicePaymentDto> paymentList;
 
     public ServiceDataDto() {
@@ -82,6 +82,22 @@ public class ServiceDataDto {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public List<ServiceFieldDto> getFieldList() {
+        return fieldList;
+    }
+
+    public void setFieldList(List<ServiceFieldDto> fieldList) {
+        this.fieldList = fieldList;
+    }
+
+    public List<ServicePaymentDto> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<ServicePaymentDto> paymentList) {
+        this.paymentList = paymentList;
     }
 
     @Override
