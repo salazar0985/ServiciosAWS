@@ -7,7 +7,7 @@ import java.util.Objects;
  * Created by IDEX1010 on 19/02/2019.
  */
 @Entity
-@Table(name = "Cat_TipoDivisa", schema = "", catalog = "Servicios")
+@Table(name = "Cat_TipoDivisas", schema = "", catalog = "Servicios")
 public class CatTipoDivisa {
     private int idDivisa;
     private String clave;

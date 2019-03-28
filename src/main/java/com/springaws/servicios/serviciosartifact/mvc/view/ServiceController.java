@@ -24,7 +24,7 @@ import java.util.List;
 @Scope("session")
 public class ServiceController {
 
-//    public static final Logger LOGGER = LoggerFactory.getLogger(ServiceController.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(ServiceController.class);
 
     private List<CatFormaPagoEntity> formaPagoList;
     private CatFormaPagoEntity selectedPayForm;
@@ -53,20 +53,10 @@ public class ServiceController {
 
     @PostConstruct
     public void initBean(){
-
         formaPagoList = (List<CatFormaPagoEntity>) formaPagoRepository.findAll();
         tipoDatoList = (List<CatTipoDatoEntity>) tipoDatoRepository.findAll();
         tipoDivisaList = (List<CatTipoDivisa>) tipoDivisaRepository.findAll();
     }
-
-//    @RequestMapping(value = "/add", method = RequestMethod.GET)
-//    public String getAddServices(){
-//
-//         LOGGER.info("Se accedió al método GET ");
-//
-//        return "/servicios/service-register";
-//
-//    }
 
 
     public List<CatFormaPagoEntity> getFormaPagoList() {

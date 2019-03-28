@@ -12,6 +12,7 @@ public class PagoServicioEntity {
     private String monto;
     private Boolean activo;
     private CatFormaPagoEntity catFormaPagoByIdFormaPago;
+    private CatTipoDivisa catTipoDivisa;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,5 +75,15 @@ public class PagoServicioEntity {
 
     public void setCatFormaPagoByIdFormaPago(CatFormaPagoEntity catFormaPagoByIdFormaPago) {
         this.catFormaPagoByIdFormaPago = catFormaPagoByIdFormaPago;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "IdTipoDivisa", referencedColumnName = "IdDivisa", nullable = false)
+    public CatTipoDivisa getCatTipoDivisa() {
+        return catTipoDivisa;
+    }
+
+    public void setCatTipoDivisa(CatTipoDivisa catTipoDivisa) {
+        this.catTipoDivisa = catTipoDivisa;
     }
 }

@@ -41,6 +41,11 @@ public class Servicio implements Serializable {
     private Integer idEstatusServicio;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 150)
+    @Column(name = "Nombre")
+    private String nombre;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "Clave")
     private String clave;
@@ -85,6 +90,14 @@ public class Servicio implements Serializable {
 
     public void setIdEstatusServicio(Integer idEstatusServicio) {
         this.idEstatusServicio = idEstatusServicio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getClave() {
@@ -149,7 +162,15 @@ public class Servicio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.springaws.servicios.serviciosartifact.mvc.model.persistence.Servicio[ idServicio=" + idServicio + " ]";
+        return "Servicio{" +
+                "idServicio=" + idServicio +
+                ", idEstatusServicio=" + idEstatusServicio +
+                ", nombre='" + nombre + '\'' +
+                ", clave='" + clave + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", activo=" + activo +
+                '}';
     }
-    
 }
