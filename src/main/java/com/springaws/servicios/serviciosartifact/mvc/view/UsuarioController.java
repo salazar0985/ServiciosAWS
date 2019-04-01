@@ -8,13 +8,13 @@ import com.springaws.servicios.serviciosartifact.mvc.model.repository.EstadosRep
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ViewScoped;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 
 @Controller
-@Scope("session")
+@ViewScoped
 public class UsuarioController {
     
     @Autowired
@@ -28,6 +28,9 @@ public class UsuarioController {
     private List<String> municipioList;
     private List<String> coloniaList;
     private List<String> codigoPostalList;
+    
+    private Boolean pantallaRegistroUsuarios;
+    private Boolean pantallaDatosBancarios;
   
     @PostConstruct
     private void postCostruct(){
@@ -35,6 +38,8 @@ public class UsuarioController {
         datosUsuario = new DatosUsuario();
         domicilio = new Domicilio();
         estadoList =  estadosRepository.findDistinctEstado();
+        pantallaRegistroUsuarios = true;
+        pantallaDatosBancarios = false;
     }
     
     public void actualizarMunicipio(){
@@ -61,8 +66,14 @@ public class UsuarioController {
         domicilio.setColonia(estadoList.get(0).getDcMunicipio());
     }
     
-    public void agregarusuario(){
-//        this.datosUsuario
+    public void verPantallaDatosUsuario(){
+        pantallaRegistroUsuarios = true;
+        pantallaDatosBancarios = false;
+    }
+    
+    public void verPantallaDatosBancarios(){
+        pantallaRegistroUsuarios = false;
+        pantallaDatosBancarios = true;
     }
 
     public Usuario getUsuario() {
@@ -119,6 +130,22 @@ public class UsuarioController {
 
     public void setCodigoPostalList(List<String> codigoPostalList) {
         this.codigoPostalList = codigoPostalList;
+    }
+
+    public Boolean getPantallaRegistroUsuarios() {
+        return pantallaRegistroUsuarios;
+    }
+
+    public void setPantallaRegistroUsuarios(Boolean pantallaRegistroUsuarios) {
+        this.pantallaRegistroUsuarios = pantallaRegistroUsuarios;
+    }
+
+    public Boolean getPantallaDatosBancarios() {
+        return pantallaDatosBancarios;
+    }
+
+    public void setPantallaDatosBancarios(Boolean pantallaDatosBancarios) {
+        this.pantallaDatosBancarios = pantallaDatosBancarios;
     }
     
 }

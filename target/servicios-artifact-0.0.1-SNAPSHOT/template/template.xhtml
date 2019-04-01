@@ -35,7 +35,9 @@
             $(document).ready(function () {
                 $('select').formSelect();
                 $('.modal').modal();
+                M.updateTextFields();
                 $('.tabs').tabs();
+                $('.character-counter').characterCounter();
             });
 
             function onStart() {
@@ -46,18 +48,24 @@
                 $('#modal-preloader').modal("close");
                 $('select').formSelect();
                 M.updateTextFields();
+                $('.tabs').tabs();
+                $('.character-counter').characterCounter();
             }
 
             function onSuccess() {
                 $('#modal-preloader').modal("close");
                 $('select').formSelect();
                 M.updateTextFields();
+                $('.tabs').tabs();
+                $('.character-counter').characterCounter();
             }
 
             function onError() {
                 $('#modal-preloader').modal("close");
                 $('select').formSelect();
                 M.updateTextFields();
+                $('.tabs').tabs();
+                $('.character-counter').characterCounter();
             }
 
         </script>
