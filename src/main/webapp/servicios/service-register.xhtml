@@ -16,11 +16,12 @@
                 <h:form class="col s12">
                     <div class="row">
                         <div class="input-field col s4">
-                            <p:inputText placeholder="#{msg['service_reg_name_placeholder']}" id="serviceName"
+                            <h:inputText placeholder="#{msg['service_reg_name_placeholder']}"
+                                         id="serviceName" value="${serviceController.serviceName}"
                                          class="validate"/>
                             <h:outputLabel for="serviceName" value="#{msg['service_reg_name']}"></h:outputLabel>
                         </div>
-                        <h:commandButton class="btn waves-effect waves-light" type="button" name="action"
+                        <h:commandButton class="btn waves-effect waves-light" type="button"
                                          value="#{msg['service_reg_add']}">
                             <!--<i class="material-icons">send</i>-->
                         </h:commandButton>
@@ -40,24 +41,21 @@
 
                     <div class="row">
                         <div class="input-field col s4">
-                            <p:inputText placeholder="#{msg['service_reg_field_placeholder']}" id="fieldName"
-                                         type="text" class="validate"/>
+                            <h:inputText id="fieldName" value = "#{serviceController.fieldName}"/>
                             <h:outputLabel for="fieldName" value="#{msg['service_reg_field']}"></h:outputLabel>
                         </div>
 
                         <div class="input-field col s4">
-                            <h:selectOneMenu id="selectDataType" value="#{serviceController.selectedTipoDato}">
+                            <h:selectOneMenu id="selectDataType" value="#{serviceController.selectedDataType}">
                                 <f:selectItem itemValue="" itemLabel="#{msg['service_reg_select_data_type_choose']}"></f:selectItem>
                                 <f:selectItems value="#{serviceController.tipoDatoList}" var="tipoDato"
                                                itemLabel="#{tipoDato.descripcion}"
                                                itemValue="#{tipoDato.clave}"></f:selectItems>
                             </h:selectOneMenu>
-                            <p:outputLabel for="selectDataType" text="#{msg['service_reg_select_data_type']}"/>
+                            <h:outputLabel for="selectDataType" text="#{msg['service_reg_select_data_type']}"/>
                         </div>
-                        <h:commandButton class="btn waves-effect waves-light" type="button" name="action"
-                                         value="#{msg['service_reg_add']}"
-                                         text="#{msg['service_reg_add']}">
-                            <!--<i class="material-icons right">send</i>-->
+                        <h:commandButton class="btn waves-effect waves-light" type="button" value="#{msg['service_reg_add']}">
+                            <f:ajax event="click" listener="#{serviceController.addField()}" execute="@form" render="@form" update="@form"/>
                         </h:commandButton>
                     </div>
 
@@ -65,9 +63,12 @@
                         <div class="input-field col s8">
                             <h:outputLabel for="settedFieldsTextArea"
                                            text="#{msg['service_reg_field_list']}"></h:outputLabel>
-                            <p:inputTextarea type="text" id="settedFieldsTextArea" class="materialize-textarea"
+                            <h:inputTextarea type="text" id="settedFieldsTextArea" class="materialize-textarea"
                                              placeholder="#{msg['service_reg_field_list_placeholder']}">
-                            </p:inputTextarea>
+                                <p:dataList value="#{serviceController.fieldList}" var="fieldAdded" type="ordered" border="0px">
+                                     #{fieldAdded.fieldName}, #{fieldAdded.dataTypeStr}
+                                </p:dataList>
+                            </h:inputTextarea>
                         </div>
                     </div>
 
@@ -122,7 +123,7 @@
 
                     <div class="row">
                         <div class="input-field col s8">
-                            <h:inputTextarea type="text" id="payFormTextArea" class="materialize-textarea"
+                            <h:inputTextarea  id="payFormTextArea" class="materialize-textarea"
                                              placeholder="service_reg_payform_none">
                             </h:inputTextarea>
                             <h:outputLabel for="payFormTextArea"
@@ -130,7 +131,7 @@
                         </div>
                     </div>
                     <div class="row right">
-                        <h:commandButton class="btn waves-effect waves-light" type="submit" name="action"
+                        <h:commandButton class="btn waves-effect waves-light" type="submit"
                                          value="#{msg['button_send']}">
                             <!--<i class="material-icons right">send</i>-->
                         </h:commandButton>

@@ -1,5 +1,7 @@
 package com.springaws.servicios.serviciosartifact.mvc.view;
 
+import com.springaws.servicios.serviciosartifact.mvc.model.dto.ServiceFieldDto;
+import com.springaws.servicios.serviciosartifact.mvc.model.dto.ServicePaymentDto;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatFormaPagoEntity;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatTipoDatoEntity;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatTipoDivisa;
@@ -9,10 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,6 @@ import java.util.List;
  */
 
 @Controller
-//@RequestMapping("/services")
 @Scope("session")
 public class ServiceController {
 
@@ -33,6 +33,19 @@ public class ServiceController {
     private List<CatTipoDivisa> tipoDivisaList;
     private CatTipoDivisa selectedTipoDivisa;
 
+
+    private String serviceName;
+    private ServiceFieldDto fieldDto;
+    private String fieldName;
+    private String selectedDataType;
+    private List<ServiceFieldDto> fieldList;
+    private  ServicePaymentDto paymentDto;
+    private List<ServicePaymentDto> paymentList;
+
+
+    /**
+     * Repositories
+     * */
     private CatFormaPagoRepository formaPagoRepository;
     private CatTipoDatoRepository tipoDatoRepository;
     private CatTipoDivisaRepository tipoDivisaRepository;
@@ -56,8 +69,20 @@ public class ServiceController {
         formaPagoList = (List<CatFormaPagoEntity>) formaPagoRepository.findAll();
         tipoDatoList = (List<CatTipoDatoEntity>) tipoDatoRepository.findAll();
         tipoDivisaList = (List<CatTipoDivisa>) tipoDivisaRepository.findAll();
+        fieldDto = new ServiceFieldDto();
+//        fieldName = new String();
+//        selectedDataType = new String();
+        fieldList = new ArrayList<>();
     }
 
+    public void addField(){
+        fieldDto = new ServiceFieldDto(fieldName, selectedDataType);
+
+        fieldList.add(fieldDto);
+        fieldName = new String();
+        selectedDataType = new String();
+        LOGGER.info("Se agregó un campo {}",fieldList.toString());
+    }
 
     public List<CatFormaPagoEntity> getFormaPagoList() {
         return formaPagoList;
@@ -105,5 +130,61 @@ public class ServiceController {
 
     public void setSelectedTipoDivisa(CatTipoDivisa selectedTipoDivisa) {
         this.selectedTipoDivisa = selectedTipoDivisa;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public List<ServiceFieldDto> getFieldList() {
+        return fieldList;
+    }
+
+    public void setFieldList(List<ServiceFieldDto> fieldList) {
+        this.fieldList = fieldList;
+    }
+
+    public List<ServicePaymentDto> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<ServicePaymentDto> paymentList) {
+        this.paymentList = paymentList;
+    }
+
+    public ServiceFieldDto getFieldDto() {
+        return fieldDto;
+    }
+
+    public void setFieldDto(ServiceFieldDto fieldDto) {
+        this.fieldDto = fieldDto;
+    }
+
+    public ServicePaymentDto getPaymentDto() {
+        return paymentDto;
+    }
+
+    public void setPaymentDto(ServicePaymentDto paymentDto) {
+        this.paymentDto = paymentDto;
+    }
+
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public String getSelectedDataType() {
+        return selectedDataType;
+    }
+
+    public void setSelectedDataType(String selectedDataType) {
+        this.selectedDataType = selectedDataType;
     }
 }

@@ -5,10 +5,17 @@ public class ServiceFieldDto {
     private Integer serviceFieldId;
     private Integer serviceId;
     private Integer dataTypeId;
+    private String dataTypeStr;
     private String fieldName;
     private Boolean active;
 
     public ServiceFieldDto() {
+    }
+
+    public ServiceFieldDto(String fieldName, String dataTypeStr) {
+        this.fieldName = fieldName;
+        this.dataTypeStr = dataTypeStr;
+
     }
 
     public Integer getServiceFieldId() {
@@ -35,6 +42,14 @@ public class ServiceFieldDto {
         this.dataTypeId = dataTypeId;
     }
 
+    public String getDataTypeStr() {
+        return dataTypeStr;
+    }
+
+    public void setDataTypeStr(String dataTypeStr) {
+        this.dataTypeStr = dataTypeStr;
+    }
+
     public String getFieldName() {
         return fieldName;
     }
@@ -49,5 +64,17 @@ public class ServiceFieldDto {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceFieldDto{" +
+                "serviceFieldId=" + serviceFieldId +
+                ", serviceId=" + serviceId +
+                ", dataTypeId=" + dataTypeId +
+                ", dataTypeStr='" + dataTypeStr + '\'' +
+                ", fieldName='" + fieldName + '\'' +
+                ", active=" + active +
+                '}';
     }
 }
