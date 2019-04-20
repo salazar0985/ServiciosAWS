@@ -1,4 +1,4 @@
-package com.springaws.servicios.serviciosartifact.mvc.view;
+package com.springaws.servicios.serviciosartifact.mvc.controller;
 
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosUsuario;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Domicilio;

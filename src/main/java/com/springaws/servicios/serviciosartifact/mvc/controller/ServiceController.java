@@ -1,5 +1,7 @@
-package com.springaws.servicios.serviciosartifact.mvc.view;
+package com.springaws.servicios.serviciosartifact.mvc.controller;
 
+import com.springaws.servicios.serviciosartifact.mvc.controller.service.CatTipoDivisaService;
+import com.springaws.servicios.serviciosartifact.mvc.model.dto.CurrencyTypeDto;
 import com.springaws.servicios.serviciosartifact.mvc.model.dto.ServiceFieldDto;
 import com.springaws.servicios.serviciosartifact.mvc.model.dto.ServicePaymentDto;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatFormaPagoEntity;
@@ -27,7 +29,6 @@ public class ServiceController {
     public static final Logger LOGGER = LoggerFactory.getLogger(ServiceController.class);
 
     private List<CatFormaPagoEntity> formaPagoList;
-    private CatFormaPagoEntity selectedPayForm;
     private List<CatTipoDatoEntity> tipoDatoList;
     private CatTipoDatoEntity selectedTipoDato;
     private List<CatTipoDivisa> tipoDivisaList;
@@ -41,6 +42,8 @@ public class ServiceController {
     private List<ServiceFieldDto> fieldList;
     private  ServicePaymentDto paymentDto;
     private List<ServicePaymentDto> paymentList;
+    private String selectedPayForm;
+    private String selectedCurrency;
 
 
     /**
@@ -52,15 +55,18 @@ public class ServiceController {
     private CampoServicioRepository campoServicioRepository;
     private PagoServicioRepository pagoServicioRepository;
 
+    private CatTipoDivisaService tipoDivisaService;
+
 
     @Autowired
     public ServiceController(CatFormaPagoRepository formaPagoRepository, CatTipoDatoRepository tipoDatoRepository,
                              CampoServicioRepository campoServicioRepository, PagoServicioRepository pagoServicioRepository,
-                             CatTipoDivisaRepository tipoDivisaRepository) {
+                             CatTipoDivisaService tipoDivisaService, CatTipoDivisaRepository tipoDivisaRepository) {
         this.formaPagoRepository = formaPagoRepository;
         this.tipoDatoRepository = tipoDatoRepository;
         this.campoServicioRepository = campoServicioRepository;
         this.pagoServicioRepository = pagoServicioRepository;
+        this.tipoDivisaService = tipoDivisaService;
         this.tipoDivisaRepository = tipoDivisaRepository;
     }
 
@@ -70,9 +76,9 @@ public class ServiceController {
         tipoDatoList = (List<CatTipoDatoEntity>) tipoDatoRepository.findAll();
         tipoDivisaList = (List<CatTipoDivisa>) tipoDivisaRepository.findAll();
         fieldDto = new ServiceFieldDto();
-//        fieldName = new String();
-//        selectedDataType = new String();
+
         fieldList = new ArrayList<>();
+        paymentList = new ArrayList<>();
     }
 
     public void addField(){
@@ -85,8 +91,21 @@ public class ServiceController {
     }
 
     public void removeField(ServiceFieldDto fieldDto){
-
         fieldList.remove(fieldDto);
+    }
+
+    public void addPaymentMtd(){
+        paymentDto = new ServicePaymentDto();
+
+        CurrencyTypeDto currency = tipoDivisaService.findCurrencyByKey(selectedPayForm);
+
+//
+//        if(!fieldName.isEmpty() && !selectedDataType.isEmpty())
+//            fieldList.add(fieldDto);
+//        fieldName = new String();
+//        selectedDataType = new String();
+        LOGGER.info("Se agregó un campo {}",fieldList.toString());
+
     }
 
     public List<CatFormaPagoEntity> getFormaPagoList() {
@@ -97,11 +116,11 @@ public class ServiceController {
         this.formaPagoList = formaPagoList;
     }
 
-    public CatFormaPagoEntity getSelectedPayForm() {
+    public String getSelectedPayForm() {
         return selectedPayForm;
     }
 
-    public void setSelectedPayForm(CatFormaPagoEntity selectedPayForm) {
+    public void setSelectedPayForm(String selectedPayForm) {
         this.selectedPayForm = selectedPayForm;
     }
 
@@ -191,5 +210,13 @@ public class ServiceController {
 
     public void setSelectedDataType(String selectedDataType) {
         this.selectedDataType = selectedDataType;
+    }
+
+    public void setSelectedCurrency(String selectedCurrency){
+        this.selectedCurrency = selectedCurrency;
+    }
+
+    public String getSelectedCurrency(){
+        return  selectedCurrency;
     }
 }

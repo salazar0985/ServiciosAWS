@@ -9,7 +9,7 @@ import org.springframework.beans.factory.config.Scope;
 
 public class FacesViewScope implements Scope {
 
-    public static final String NAME = "view";
+    public static final String NAME = "controller";
 
     @Override
     public Object get(String name, ObjectFactory<?> objectFactory) {
@@ -42,7 +42,7 @@ public class FacesViewScope implements Scope {
 
     @Override
     public void registerDestructionCallback(String name, Runnable callback) {
-        // Not supported by JSF for view scope
+        // Not supported by JSF for controller scope
     }
 
     @Override
