@@ -77,11 +77,16 @@ public class ServiceController {
 
     public void addField(){
         fieldDto = new ServiceFieldDto(fieldName, selectedDataType);
-
-        fieldList.add(fieldDto);
+        if(!fieldName.isEmpty() && !selectedDataType.isEmpty())
+            fieldList.add(fieldDto);
         fieldName = new String();
         selectedDataType = new String();
         LOGGER.info("Se agregó un campo {}",fieldList.toString());
+    }
+
+    public void removeField(ServiceFieldDto fieldDto){
+
+        fieldList.remove(fieldDto);
     }
 
     public List<CatFormaPagoEntity> getFormaPagoList() {

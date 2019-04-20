@@ -54,23 +54,64 @@
                             </h:selectOneMenu>
                             <h:outputLabel for="selectDataType" text="#{msg['service_reg_select_data_type']}"/>
                         </div>
-                        <h:commandButton class="btn waves-effect waves-light" type="button" value="#{msg['service_reg_add']}">
+
+
+                        <h:commandLink class="btn-floating btn-large waves-effect waves-light">
+                            <i class="material-icons">add</i>
                             <f:ajax event="click" listener="#{serviceController.addField()}" execute="@form" render="@form" update="@form"/>
-                        </h:commandButton>
+                        </h:commandLink>
+
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s8">
-                            <h:outputLabel for="settedFieldsTextArea"
-                                           text="#{msg['service_reg_field_list']}"></h:outputLabel>
-                            <h:inputTextarea type="text" id="settedFieldsTextArea" class="materialize-textarea"
-                                             placeholder="#{msg['service_reg_field_list_placeholder']}">
-                                <p:dataList value="#{serviceController.fieldList}" var="fieldAdded" type="ordered" border="0px">
-                                     #{fieldAdded.fieldName}, #{fieldAdded.dataTypeStr}
-                                </p:dataList>
-                            </h:inputTextarea>
-                        </div>
+                        <h4>#{msg['service_reg_added_field']}</h4>
                     </div>
+                    <div class="row">
+                        <div class="col s8">
+                            <h:outputLabel for="fieldDataList"
+                                           text="#{msg['service_reg_field_list']}"></h:outputLabel>
+                            <table class="striped" id="fieldDataList">
+                                <thead>
+                                <tr>
+                                    <th>#{msg['service_reg_field']}</th>
+                                    <th>#{msg['service_reg_select_data_type']}</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <ui:repeat value="#{serviceController.fieldList}" var="fieldAdded">
+                                    <tr>
+                                    <td>#{fieldAdded.fieldName}</td>
+                                    <td>#{fieldAdded.dataTypeStr}</td>
+                                    <td>
+                                        <div class="fixed-action-btn" style="position: relative !important; z-index: 0; padding-top: 33%;">
+                                        <h:commandLink class="btn-floating blue">
+                                        <i class="material-icons">mode_edit</i>
+                                        </h:commandLink>
+                                        <ul>
+                                            <li><h:commandLink class="btn-floating red"><i class="material-icons">delete</i>
+                                                <f:ajax event="click" listener="#{serviceController.removeField(fieldAdded)}" execute="@form" render="@form" update="@form"/>
+                                            </h:commandLink></li>
+                                            <li><h:commandLink class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></h:commandLink></li>
+                                            <li><h:commandLink class="btn-floating green"><i class="material-icons">publish</i></h:commandLink></li>
+                                            <li><h:commandLink class="btn-floating blue"><i class="material-icons">attach_file</i></h:commandLink></li>
+                                        </ul>
+                                        </div>
+                                    </td>
+                                    </tr>
+                                </ui:repeat>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+
 
                     <div class="row">
                         <h3 class="header">#{msg['service_reg_data']}</h3>
