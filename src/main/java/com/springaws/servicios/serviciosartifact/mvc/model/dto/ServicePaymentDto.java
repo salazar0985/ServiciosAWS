@@ -8,8 +8,16 @@ public class ServicePaymentDto {
     private Integer currencyId;
     private String amount;
     private Boolean active;
+    private String payFormStr;
+    private String currencyStr;
+
 
     public ServicePaymentDto() {
+    }
+
+    public ServicePaymentDto(String payFormStr, String currencyStr) {
+        this.payFormStr = payFormStr;
+        this.currencyStr = currencyStr;
     }
 
     public Integer getServicePaymentId() {
@@ -58,5 +66,21 @@ public class ServicePaymentDto {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getPayFormStr() {
+        return payFormStr;
+    }
+
+    public void setPayFormStr(String payFormStr) {
+        this.payFormStr = payFormStr;
+    }
+
+    public String getCurrencyStr() {
+        return currencyStr;
+    }
+
+    public void setCurrencyStr(String currencyStr) {
+        this.currencyStr = currencyStr;
     }
 }

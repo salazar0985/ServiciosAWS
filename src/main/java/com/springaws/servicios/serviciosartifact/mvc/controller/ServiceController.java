@@ -95,17 +95,21 @@ public class ServiceController {
     }
 
     public void addPaymentMtd(){
-        paymentDto = new ServicePaymentDto();
+        paymentDto = new ServicePaymentDto(selectedPayForm, selectedCurrency);
 
-        CurrencyTypeDto currency = tipoDivisaService.findCurrencyByKey(selectedPayForm);
+        CurrencyTypeDto currency = tipoDivisaService.findCurrencyByKey(selectedCurrency);
+//                    paymentDto.setCurrencyId(currency.getCurrencyId());
 
-//
-//        if(!fieldName.isEmpty() && !selectedDataType.isEmpty())
-//            fieldList.add(fieldDto);
-//        fieldName = new String();
-//        selectedDataType = new String();
-        LOGGER.info("Se agregó un campo {}",fieldList.toString());
+        if(!selectedPayForm.isEmpty() && !selectedCurrency.isEmpty())
+            paymentList.add(paymentDto);
+        selectedPayForm = new String();
+        selectedCurrency = new String();
+        LOGGER.info("Se agregó un campo {}",paymentList.toString());
 
+    }
+
+    public void removePayment(ServicePaymentDto paymentDto){
+        paymentList.remove(paymentDto);
     }
 
     public List<CatFormaPagoEntity> getFormaPagoList() {
