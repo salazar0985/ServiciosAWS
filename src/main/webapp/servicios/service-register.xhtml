@@ -60,7 +60,6 @@
                             <i class="material-icons">add</i>
                             <f:ajax event="click" listener="#{serviceController.addField()}" execute="@form" render="@form" update="@form"/>
                         </h:commandLink>
-
                     </div>
 
                     <div class="row">
@@ -166,7 +165,9 @@
                         <!--</div>-->
                     <!--</div>-->
 
-
+                    <div class="row">
+                        <h4>#{msg['service_reg_added_payform']}</h4>
+                    </div>
                     <div class="row">
                         <div class="col s8">
                             <h:outputLabel for="payFormDataList"
