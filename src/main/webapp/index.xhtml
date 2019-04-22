@@ -17,75 +17,83 @@
             <div styleClass="row card">  
                 <div class="col s12 card-content">                   
                     <h:form>
+                        <p:link outcome="productDetail" value="Bookmark">
+                            <f:param name="productId" value="10" />
+                        </p:link>
                         <div class="row">
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.curp}" id="curp" maxlength="18" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.curp}" id="curp" maxlength="18" styleClass="character-counter validate">
                                     <f:passThroughAttribute name="data-length" value="18" />
                                 </h:inputText>
                                 <h:outputLabel value="CURP" for="curp" />
-                                <h:message for="curp" />
+                                <h:message for="curp" errorClass="error-message" />
                             </div>
                             <div class="input-field col s4">
                                 <h:commandButton type="button" value="Buscar" styleClass="waves-effect waves-light btn white-text" />
                             </div>
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.rfc}" id="rfc" maxlength="13" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.rfc}" id="rfc" maxlength="13" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="13" />
                                 </h:inputText>
                                 <h:outputLabel value="RFC" for="rfc" />
-                                <h:message for="rfc" />
+                                <h:message for="rfc" errorClass="error-message" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.nombre}" id="nombre" maxlength="150" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.nombre}" id="nombre" maxlength="150" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="150" />
                                 </h:inputText>
                                 <h:outputLabel value="Nombre" for="nombre" />
-                                <h:message for="nombre" />
+                                <h:message for="nombre" errorClass="error-message" />
                             </div>
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.paterno}" id="paterno" maxlength="150" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.paterno}" id="paterno" maxlength="150" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="150" />
                                 </h:inputText>
                                 <h:outputLabel value="Apellido Paterno" for="paterno" />
-                                <h:message for="paterno" />
+                                <h:message for="paterno" errorClass="error-message" />
                             </div>
                             <div class="input-field col s4">
                                 <h:inputText value="#{usuarioController.datosUsuario.materno}" id="materno" maxlength="150" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="150" />
                                 </h:inputText>
                                 <h:outputLabel value="Apellido Materno" for="materno" />
-                                <h:message for="materno" />
+                                <h:message for="materno" errorClass="error-message" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.denominacion}" id="denominacion" maxlength="150" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.denominacion}" id="denominacion" maxlength="150" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="150" />
                                 </h:inputText>
                                 <h:outputLabel value="Denominación" for="denominacion" />
-                                <h:message for="denominacion" />
+                                <h:message for="denominacion" errorClass="error-message" />
                             </div>
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.telefono}" id="telefono" maxlength="20" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.telefono}" id="telefono" maxlength="20" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="20" />
                                 </h:inputText>
                                 <h:outputLabel value="Teléfono" for="telefono" />
-                                <h:message for="telefono" />
+                                <h:message for="telefono" errorClass="error-message" />
                             </div>
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.datosUsuario.email}" id="email" maxlength="100" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.datosUsuario.email}" id="email" maxlength="100" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="100" />
                                 </h:inputText>
                                 <h:outputLabel value="Correo electrónico" for="email" />
-                                <h:message for="email" />
+                                <h:message for="email" errorClass="error-message" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col 12">
+                                <h5>Dirección Fiscal</h5>
                             </div>
                         </div>
                         <div class="row">
                             <p:outputPanel id="col-codigo-postal" class="input-field col s4">
 
-                                <h:inputText value="#{usuarioController.domicilio.codigoPostal}" id="codigo-postal" maxlength="5" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.domicilio.codigoPostal}" id="codigo-postal" maxlength="5" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="5" />
                                     <f:ajax event="blur" execute="@this" listener="#{usuarioController.establecerDireccionPorCodigoPostal()}" render="col-estado col-municipio col-colonia" />
                                 </h:inputText>
@@ -97,73 +105,147 @@
                                 
                                 -->
                                 <h:outputLabel value="Código postal" for="codigo-postal" />
-                                <h:message for="codigo-postal" />
+                                <h:message for="codigo-postal" errorClass="error-message" />
                             </p:outputPanel>
                             <div class="input-field col s4">
-                                <h:selectOneMenu value="#{usuarioController.domicilio.pais}" id="pais">
+                                <h:selectOneMenu required="true" value="#{usuarioController.domicilio.pais}" id="pais">
                                     <f:selectItem itemLabel="México" itemValue="México" />
                                 </h:selectOneMenu>
                                 <h:outputLabel value="País" for="pais" />
-                                <h:message for="pais" />
+                                <h:message for="pais" errorClass="error-message" />
                             </div>
                             <p:outputPanel id="col-estado" class="input-field col s4">
-                                <h:selectOneMenu value="#{usuarioController.domicilio.estado}" id="estado">
+                                <h:selectOneMenu required="true" value="#{usuarioController.domicilio.estado}" id="estado">
                                     <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
                                     <f:selectItems value="#{usuarioController.estadoList}" var="estado" itemLabel="#{estado}" itemValue="#{estado}" />
                                     <f:ajax event="change" execute="@this" listener="#{usuarioController.actualizarMunicipio()}" render="col-municipio"  />
                                 </h:selectOneMenu>
                                 <h:outputLabel value="Estado" for="estado" />
-                                <h:message for="estado" />
+                                <h:message for="estado" errorClass="error-message" />
                             </p:outputPanel>
                         </div>
                         <div class="row">
                             <p:outputPanel id="col-municipio" class="input-field col s4">
-                                <h:selectOneMenu value="#{usuarioController.domicilio.municipio}" id="municipio">
+                                <h:selectOneMenu required="true" value="#{usuarioController.domicilio.municipio}" id="municipio">
                                     <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
                                     <f:selectItems value="#{usuarioController.municipioList}" var="municipio" itemLabel="#{municipio}" itemValue="#{municipio}" />
                                     <f:ajax event="change" execute="@this" listener="#{usuarioController.actulizarColonia()}" render="col-colonia" />
                                 </h:selectOneMenu>
                                 <h:outputLabel value="Municipio" for="municipio" />
-                                <h:message for="municipio" />
+                                <h:message for="municipio" errorClass="error-message" />
                             </p:outputPanel>
                             <p:outputPanel id="col-colonia" styleClass="input-field col s4">
-                                <h:selectOneMenu value="#{usuarioController.domicilio.colonia}" id="colonia">
+                                <h:selectOneMenu required="true" value="#{usuarioController.domicilio.colonia}" id="colonia">
                                     <f:selectItem itemLabel="Choose your option" itemDisabled="true" />
                                     <f:selectItems value="#{usuarioController.coloniaList}" var="colonia" itemLabel="#{colonia}" itemValue="#{colonia}" />
                                     <f:ajax event="change" execute="@this" listener="#{usuarioController.actualizarCodigoPostal()}" render="col-codigo-postal" />
                                 </h:selectOneMenu>
                                 <h:outputLabel value="Colonia" for="colonia" />
-                                <h:message for="colonia" />
+                                <h:message for="colonia" errorClass="error-message" />
                             </p:outputPanel> 
                             <div class="input-field col s4">
-                                <h:inputText value="#{usuarioController.domicilio.calle}" id="calle" maxlength="18" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.domicilio.calle}" id="calle" maxlength="18" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="18" />
                                 </h:inputText>
                                 <h:outputLabel value="Calle" for="calle" />
-                                <h:message for="calle" />
+                                <h:message for="calle" errorClass="error-message" />
                             </div>                               
                         </div> 
                         <div class="row">
                             <div class="input-field col s2">
-                                <h:inputText value="#{usuarioController.domicilio.numero}" id="numero-exterior" maxlength="10" styleClass="character-counter">
+                                <h:inputText required="true" value="#{usuarioController.domicilio.numero}" id="numero-exterior" maxlength="10" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="10" />
                                 </h:inputText>
                                 <h:outputLabel value="Número exterior" for="numero-exterior" />
-                                <h:message for="numero-exterior" />
+                                <h:message for="numero-exterior" errorClass="error-message" />
                             </div> 
                             <div class="input-field col s2">
-                                <h:inputText value="#{usuarioController.domicilio.numeroInt}" id="numero-interior" styleClass="character-counter">
+                                <h:inputText value="#{usuarioController.domicilio.numeroInt}" id="numero-interior" maxlength="10" styleClass="character-counter">
                                     <f:passThroughAttribute name="data-length" value="10" />
                                 </h:inputText>
                                 <h:outputLabel value="Número interior" for="numero-interior" />
-                                <h:message for="numero-interior" />
+                                <h:message for="numero-interior" errorClass="error-message" />
                             </div> 
                             <div class="input-field col s8">
                                 <h:inputTextarea id="datos-adicionales" styleClass="materialize-textarea character-counter">
                                     <f:passThroughAttribute name="data-length" value="300" />
                                 </h:inputTextarea>
                                 <h:outputLabel value="Datos adicionales" for="datos-adicionales" />
-                                <h:message for="datos-adicionales" />
+                                <h:message for="datos-adicionales" errorClass="error-message" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col 12">
+                                <h5>Datos Bancarios</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <h:inputText required="true" value="#{usuarioController.datosBanc.titular}" id="titular" maxlength="200" styleClass="character-counter">
+                                    <f:passThroughAttribute name="data-length" value="200" />
+                                </h:inputText>
+                                <h:outputLabel value="Titular" for="titular" />
+                                <h:message for="titular" errorClass="error-message" />
+                            </div>
+                            <div class="input-field col s4">
+                                <h:inputText required="true" value="#{usuarioController.datosBanc.banco}" id="banco" maxlength="150" styleClass="character-counter">
+                                    <f:passThroughAttribute name="data-length" value="150" />
+                                </h:inputText>
+                                <h:outputLabel value="Banco" for="banco" />
+                                <h:message for="banco" errorClass="error-message" />
+                            </div>
+                            <div class="input-field col s4">
+                                <h:inputText required="true" value="#{usuarioController.datosBanc.clabe}" id="clabe" maxlength="18" styleClass="character-counter">
+                                    <f:passThroughAttribute name="data-length" value="100" />
+                                </h:inputText>
+                                <h:outputLabel value="Clabe" for="clabe" />
+                                <h:message for="clabe" errorClass="error-message" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <h:inputText required="true" value="#{usuarioController.datosBanc.numCta}" id="numero-cuenta" maxlength="10" styleClass="character-counter">
+                                    <f:passThroughAttribute name="data-length" value="10" />
+                                </h:inputText>
+                                <h:outputLabel value="Número de cuenta" for="numero-cuenta" />
+                                <h:message for="numero-cuenta" errorClass="error-message" />
+                            </div> 
+                            <div class="input-field col s8">
+                                <h:inputTextarea required="true" id="direccion-domicilio" styleClass="materialize-textarea character-counter">
+                                    <f:passThroughAttribute name="data-length" value="200" />
+                                </h:inputTextarea>
+                                <h:outputLabel value="Dirección de la cuenta" for="direccion-domicilio" />
+                                <h:message for="direccion-domicilio" errorClass="error-message" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col 12">
+                                <h5>Agregar Tarjeta</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <h:inputText required="true" value="#{usuarioController.tarjeta.numeroTarjeta}" id="numero-tarjeta" maxlength="25" styleClass="character-counter">
+                                    <f:passThroughAttribute name="data-length" value="25" />
+                                </h:inputText>
+                                <h:outputLabel value="Número tarjeta" for="numero-tarjeta" />
+                                <h:message for="numero-tarjeta" errorClass="error-message" />
+                            </div>
+                            <div class="input-field col s4"><!--
+                                <h:inputText required="true" value="#{usuarioController.tarjeta.fechaExpiracion}" id="fecha-expiracion" styleClass="datepicker">
+                                </h:inputText>
+                                <h:outputLabel value="Fecha Expiración" for="fecha-expiracion" />
+                                <h:message for="fecha-expiracion" errorClass="error-message" /> -->    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col 12 right">
+                                <h:commandButton value="Cancelar" styleClass="waves-effect waves-light btn white">
+                                    
+                                </h:commandButton>
+                                <h:commandButton type="button" value="Guardar usuario" styleClass="waves-effect waves-light btn">
+                                    <f:ajax event="click" execute="@form" listener="#{usuarioController.agregarUsuario()}" render="@form" />
+                                </h:commandButton>
                             </div>
                         </div>
                     </h:form>

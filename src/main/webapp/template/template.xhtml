@@ -38,6 +38,7 @@
                 M.updateTextFields();
                 $('.tabs').tabs();
                 $('.character-counter').characterCounter();
+                $('.datepicker').datepicker();
             });
 
             function onStart() {
@@ -50,6 +51,7 @@
                 M.updateTextFields();
                 $('.tabs').tabs();
                 $('.character-counter').characterCounter();
+                $('.datepicker').datepicker();
             }
 
             function onSuccess() {
@@ -58,6 +60,7 @@
                 M.updateTextFields();
                 $('.tabs').tabs();
                 $('.character-counter').characterCounter();
+                $('.datepicker').datepicker();
             }
 
             function onError() {
@@ -66,6 +69,7 @@
                 M.updateTextFields();
                 $('.tabs').tabs();
                 $('.character-counter').characterCounter();
+                $('.datepicker').datepicker();
             }
 
         </script>
@@ -78,6 +82,12 @@
 
             main {
                 flex: 1 0 auto;
+            }
+            
+            .error-message{
+                font-size: 10pt;
+                color: red;
+                font-weight: bold;
             }
         </style>
         <p:ajaxStatus onstart="onStart()" oncomplete="onComplete()" onsuccess="onSuccess()" onerror="onError()" />

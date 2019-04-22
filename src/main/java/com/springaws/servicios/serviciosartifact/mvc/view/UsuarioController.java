@@ -1,14 +1,26 @@
 package com.springaws.servicios.serviciosartifact.mvc.view;
 
+import com.springaws.servicios.serviciosartifact.mvc.model.persistence.CatTipoTarjeta;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosUsuario;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Domicilio;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Estados;
 import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Usuario;
+import com.springaws.servicios.serviciosartifact.mvc.model.persistence.DatosBanc;
+import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Rol;
+import com.springaws.servicios.serviciosartifact.mvc.model.persistence.Tarjeta;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.DatosBancRepository;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.DatosUsuarioRepository;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.DomicilioRepository;
 import com.springaws.servicios.serviciosartifact.mvc.model.repository.EstadosRepository;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.TarjetaRepository;
+import com.springaws.servicios.serviciosartifact.mvc.model.repository.UsuarioRepository;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -20,26 +32,47 @@ public class UsuarioController {
     @Autowired
     private EstadosRepository estadosRepository;
     
+    @Autowired
+    private DomicilioRepository domicilioRepository;
+    
+    @Autowired
+    private DatosUsuarioRepository datosUsuarioRepository;
+    
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private DatosBancRepository datosBancRepository;
+    
+    @Autowired
+    private TarjetaRepository tarjetaRepository;
+    
     private Usuario usuario;
     private DatosUsuario datosUsuario;
     private Domicilio domicilio;
+    private DatosBanc datosBanc;
+    private Tarjeta tarjeta;
     
     private List<String> estadoList;
     private List<String> municipioList;
     private List<String> coloniaList;
     private List<String> codigoPostalList;
-    
-    private Boolean pantallaRegistroUsuarios;
-    private Boolean pantallaDatosBancarios;
   
     @PostConstruct
     private void postCostruct(){
+        initComponents();
+        estadoList =  estadosRepository.findDistinctEstado();
+    }
+    
+    private void initComponents(){
+        municipioList = new ArrayList<>();
+        coloniaList = new ArrayList<>();
+        codigoPostalList = new ArrayList<>();
         usuario = new Usuario();
         datosUsuario = new DatosUsuario();
         domicilio = new Domicilio();
-        estadoList =  estadosRepository.findDistinctEstado();
-        pantallaRegistroUsuarios = true;
-        pantallaDatosBancarios = false;
+        datosBanc = new DatosBanc();
+        tarjeta = new Tarjeta();
     }
     
     public void actualizarMunicipio(){
@@ -65,17 +98,34 @@ public class UsuarioController {
         }
         domicilio.setColonia(estadoList.get(0).getDcMunicipio());
     }
-    
-    public void verPantallaDatosUsuario(){
-        pantallaRegistroUsuarios = true;
-        pantallaDatosBancarios = false;
-    }
-    
-    public void verPantallaDatosBancarios(){
-        pantallaRegistroUsuarios = false;
-        pantallaDatosBancarios = true;
-    }
 
+    public void agregarUsuario(){
+        domicilio.setActivo(Boolean.TRUE);
+        domicilio = domicilioRepository.save(domicilio);
+        datosUsuario.setActivo(Boolean.TRUE);
+        datosUsuario.setIdDomicilio(domicilio);
+        datosUsuario = datosUsuarioRepository.save(datosUsuario);
+        usuario.setFechaCreacion(new Date());
+        usuario.setFechaActualizacion(new Date());
+        usuario.setIdDatosUsr(datosUsuario);
+        usuario.setIdRol(new Rol(1));
+        usuario = usuarioRepository.save(usuario);
+        datosBanc.setActivo(Boolean.TRUE);
+        datosBanc.setFechaCreacion(new Date());
+        datosBanc.setFechaActualizacion(new Date());
+        datosBanc = datosBancRepository.save(datosBanc);
+        tarjeta.setIdDatosBanc(datosBanc);
+        tarjeta.setIdTipoTarjeta(new CatTipoTarjeta(1));
+        tarjeta.setActivo(Boolean.TRUE);
+        tarjeta.setFechaExpiracion(new Date());
+        tarjetaRepository.save(tarjeta);
+        initComponents();
+        
+        FacesContext context = FacesContext.getCurrentInstance();        
+        context.addMessage(null, new FacesMessage("Successful",  "Your message: Se ha creado el usuario exitosamente.") );
+        context.addMessage(null, new FacesMessage("Second Message", "Additional Message Detail"));
+    }
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -132,20 +182,20 @@ public class UsuarioController {
         this.codigoPostalList = codigoPostalList;
     }
 
-    public Boolean getPantallaRegistroUsuarios() {
-        return pantallaRegistroUsuarios;
+    public DatosBanc getDatosBanc() {
+        return datosBanc;
     }
 
-    public void setPantallaRegistroUsuarios(Boolean pantallaRegistroUsuarios) {
-        this.pantallaRegistroUsuarios = pantallaRegistroUsuarios;
+    public void setDatosBanc(DatosBanc datosBanc) {
+        this.datosBanc = datosBanc;
     }
 
-    public Boolean getPantallaDatosBancarios() {
-        return pantallaDatosBancarios;
+    public Tarjeta getTarjeta() {
+        return tarjeta;
     }
 
-    public void setPantallaDatosBancarios(Boolean pantallaDatosBancarios) {
-        this.pantallaDatosBancarios = pantallaDatosBancarios;
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
     }
     
 }
