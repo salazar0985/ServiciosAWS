@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
         <jsf-mojarra.version>2.2.11</jsf-mojarra.version>
         <primefaces.version>6.2</primefaces.version>
+        <liquibase.version>3.6.0</liquibase.version>
     </properties>
 
     <dependencies>
@@ -95,6 +96,14 @@
             <scope>provided</scope>
         </dependency>
         -->
+
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -103,7 +112,29 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <configuration>
+                    <propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 
